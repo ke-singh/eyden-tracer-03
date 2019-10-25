@@ -88,9 +88,13 @@ public:
 	 */
 	CBoundingBox CalcBounds(void)
 	{
-		CBoundingBox res;
-		// --- PUT YOUR CODE HERE ---
-		return res;
+		CBoundingBox boundingBox;
+		boundingBox.m_min = std::numeric_limits<float>::infinity();
+ 		boundingBox.m_max = -1 * std::numeric_limits<float>::infinity();
+ 		for (auto prim : m_vpPrims){
+ 			boundingBox = boundingBox.extend(prim->calcBounds());
+ 		}
+		return boundingBox;
 	}
 	/**
 	 * @brief Build the BSP tree for the current scene

@@ -64,9 +64,11 @@ public:
 
 	virtual CBoundingBox calcBounds(void) const override
 	{
-		CBoundingBox res;
-		// --- PUT YOUR CODE HERE ---
-		return res;
+		CBoundingBox boundingBox;
+        boundingBox.m_min = std::numeric_limits<Vec3f>::infinity();
+        boundingBox.m_max = -1 * std::numeric_limits<Vec3f>::infinity();
+        boundingBox.extend(m_center + Vec3f(m_radius, m_radius, m_radius));
+		return boundingBox;
 	}
 	
 private:
